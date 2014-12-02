@@ -44,16 +44,17 @@ komentować.
     …
 
 ``pwm2.asm``
-    …
+    PWM na przerwaniach z timera.
 
 ``pwm3.asm``
-    …
+    PWM w skali od 0:8 do 7:8 na przerwaniach z timera.
 
 ``pwm_serial.asm``
-    …
+    PWM w skali od 0:8 do 7:8 na przerwaniach z timera: sterowanie również
+    przez port szeregowy (liczby 0-7).
 
 ``lcd_serial.asm``
-    …
+    Wyświetlacz LCD sterowany z portu szeregowego.
 
 Licencja
 --------
