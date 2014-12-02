@@ -24,3 +24,8 @@ Przykładowe wywołanie dla pliku ``diody2.asm``::
     packihx: read 3 lines, wrote 4: OK.
     -------- GOTOWE ---------
 
+Licencja
+--------
+
+Prawa autorskie: Piotr Banaszkiewicz, Piotr Świderek ® 2014
+Licencja: MIT.
