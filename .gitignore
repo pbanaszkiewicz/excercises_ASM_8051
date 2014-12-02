@@ -1,0 +1,9 @@
+*.hex
+*.ihx
+*.lnk
+*.lst
+*.map
+*.rel
+*.rst
+!README.rst
+*.sym
