@@ -24,8 +24,40 @@ Przykładowe wywołanie dla pliku ``diody2.asm``::
     packihx: read 3 lines, wrote 4: OK.
     -------- GOTOWE ---------
 
+Opisy programów
+---------------
+
+Poniżej zamieszczone są krótkie opisy zawartości poszczególnych plików.  Więcej
+szczegółów można znaleźć w samych plikach - staraliśmy się je dobrze
+komentować.
+
+``diody.asm``
+    Pierwszy program.  Zaświeca kilka diod.
+
+``diody2.asm``
+    Prosty PWM przy dowolnej częstotliwości.
+
+``diody3.asm``
+    Świecenie diodami przy określonej częstotliwości (około 3Hz).
+
+``pwm1.asm``
+    …
+
+``pwm2.asm``
+    …
+
+``pwm3.asm``
+    …
+
+``pwm_serial.asm``
+    …
+
+``lcd_serial.asm``
+    …
+
 Licencja
 --------
 
-Prawa autorskie: Piotr Banaszkiewicz, Piotr Świderek ® 2014
+Prawa autorskie: Piotr Banaszkiewicz, Piotr Świderek ® 2014.
+
 Licencja: MIT.
