@@ -88,7 +88,7 @@ P_IRQ:
 LED_LOOP:
     RETI
     
-A_IN_BETWEEN:
+IN_RANGE:
     MOV R2, A
     RETI
 
@@ -109,5 +109,5 @@ SERIAL_IRQ:
         TMP_LABEL:
         
     ; tylko jeśli C jest ustawione możemy przyjąć nową wartość PWM
-    JC A_IN_BETWEEN
+    JC IN_RANGE
     RETI
