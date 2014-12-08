@@ -31,8 +31,9 @@ START:
     SETB TR1
 
     ; ustawienie wartości PWM
-    MOV R2, #5  ; R3 - jest zapisywane przez SERIAL_IRQ, ale inicjalizujemy
-    MOV R0, R3
+    MOV R2, #5  ; R2 - jest zapisywane przez SERIAL_IRQ, ale inicjalizujemy
+    MOV A, R2
+    MOV R0, A  ; nie można skopiować z R2 do R0 :(
     MOV A, #8
     SUBB A, R0
     MOV R1, A  ; R1=8-R0
@@ -62,7 +63,7 @@ P_IRQ:
 
     ;  Ustawianie R0 "na sztywno" na 0.  Dzięki temu będzie wykonywał się kod
     ;  poniżej.
-    MOVB R0, #1
+    MOV R0, #1
 
     ; zgaszenie diody przez R1=(8 - R0) cykli
     ;  Po R0-cyklach (np. 5, jak w naszym programie) uruchomionych zostaje
@@ -72,7 +73,8 @@ P_IRQ:
 
     ; reset ustawień R0 i R1
     ;  Na samym końcu następuje reset wartości rejestrów pomocniczych.
-    MOV R0, R2
+    MOV A, R2
+    MOV R0, A  ; nie można skopiować z R2 do R0 :(
     MOV A, #8
     SUBB A, R0
     MOV R1, A  ; R1=8-R0
@@ -85,11 +87,27 @@ P_IRQ:
 
 LED_LOOP:
     RETI
+    
+A_IN_BETWEEN:
+    MOV R2, A
+    RETI
 
 ; obsługa portu szeregowego
 SERIAL_IRQ:
-    MOV R2, SBUF  ; zapisanie przychodzącego bajtu do R1
-    MOV SBUF, R2  ; odesłanie tego samego bajtu
+    MOV A, SBUF  ; zapisanie przychodzącego bajtu do R1
+    MOV SBUF, A  ; odesłanie tego samego bajtu
     CLR RI;  zerowanie flagi odbioru
     CLR TI;  zerowanie flagi nadawania
+    
+    ; obniżenie wartosci o 48, bo w ASCII 48=='0'
+    CLR C
+    SUBB A, #48  ; tak naprawdę: A = A - C - #48, stąd zerowanie C
+    
+    ; CJNE, poza sprawdzeniem równości, ustawia również flagę C w przypadku gdy
+    ; wartość w akumulatorze jest niższa od argumentu (8)
+    CJNE A, #8, TMP_LABEL
+        TMP_LABEL:
+        
+    ; tylko jeśli C jest ustawione możemy przyjąć nową wartość PWM
+    JC A_IN_BETWEEN
     RETI
