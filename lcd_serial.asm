@@ -88,17 +88,15 @@ INIT:
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 MAIN:
-    MOV A, #69 ; E 1000101
+    MOV A, #'H'
     LCALL WRITE_CHAR
-    MOV A, #0x65 ; e 1100101
+    MOV A, #'e'
     LCALL WRITE_CHAR
-    MOV A, #69 ; E 1000101
+    MOV A, #'l'
     LCALL WRITE_CHAR
-    MOV A, #0x65 ; e 1100101
+    MOV A, #'l'
     LCALL WRITE_CHAR
-    MOV A, #69 ; E 1000101
-    LCALL WRITE_CHAR
-    MOV A, #0x65 ; e 1100101
+    MOV A, #'o'
     LCALL WRITE_CHAR
 
 LOOP:
